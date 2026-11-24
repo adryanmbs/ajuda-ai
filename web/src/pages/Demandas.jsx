@@ -4,6 +4,7 @@ import { useAuth } from '../auth.jsx';
 import { useApi, useTitulo } from '../hooks.js';
 import DemandaLinha from '../components/DemandaLinha.jsx';
 import { Aviso, Carregando } from '../components/ui.jsx';
+import { dataParaIso, isoParaData, mascaraData } from '../formato.js';
 
 export default function Demandas() {
   useTitulo(null);
@@ -11,7 +12,8 @@ export default function Demandas() {
   const [params, setParams] = useSearchParams();
   const data = params.get('data') || '';
   const local = params.get('local') || '';
-  const [form, setForm] = useState({ data, local });
+  const [form, setForm] = useState({ data: isoParaData(data), local });
+  const [erroData, setErroData] = useState(null);
 
   const busca = new URLSearchParams();
   if (data) busca.set('data', data);
@@ -21,13 +23,22 @@ export default function Demandas() {
   function buscar(e) {
     e.preventDefault();
     const novos = {};
-    if (form.data) novos.data = form.data;
+    if (form.data) {
+      const iso = dataParaIso(form.data);
+      if (!iso) {
+        setErroData('Digite o dia no formato DD/MM/AAAA, por exemplo 28/11/2026.');
+        return;
+      }
+      novos.data = iso;
+    }
+    setErroData(null);
     if (form.local.trim()) novos.local = form.local.trim();
     setParams(novos);
   }
 
   function limpar() {
     setForm({ data: '', local: '' });
+    setErroData(null);
     setParams({});
   }
 
@@ -43,7 +54,17 @@ export default function Demandas() {
         <form className="filtros" onSubmit={buscar} role="search">
           <div className="campo">
             <label htmlFor="f-data">Dia</label>
-            <input id="f-data" type="date" value={form.data} onChange={(e) => setForm({ ...form, data: e.target.value })} />
+            <input
+              id="f-data"
+              className="campo__data"
+              inputMode="numeric"
+              placeholder="DD/MM/AAAA"
+              maxLength={10}
+              aria-invalid={erroData ? true : undefined}
+              aria-describedby={erroData ? 'f-data-erro' : undefined}
+              value={form.data}
+              onChange={(e) => setForm({ ...form, data: mascaraData(e.target.value) })}
+            />
           </div>
           <div className="campo campo--largo">
             <label htmlFor="f-local">Bairro ou local</label>
@@ -64,6 +85,7 @@ export default function Demandas() {
             )}
           </div>
         </form>
+        {erroData && <p className="campo__erro" id="f-data-erro" role="alert">{erroData}</p>}
       </section>
 
       <section aria-labelledby="titulo-lista">

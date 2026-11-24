@@ -446,7 +446,10 @@ a:hover { color: var(--roxo-escuro); }
 .obrigatorio { color: var(--roxo); font-weight: 700; }
 .nota-obrigatorios { font-size: var(--t-1); color: var(--pedra); margin: 0; }
 .campo__dica { font-size: var(--t-1); color: var(--pedra); margin: 0; }
-.campos-lado { display: grid; grid-template-columns: 1fr 8rem; gap: 1rem; }
+.campos-data { display: grid; grid-template-columns: minmax(0, 1fr) 7rem 7rem; gap: 1rem; }
+.campo .campo__data { width: 9.5rem; }
+.campo__erro { font-size: var(--t-1); color: var(--erro); font-weight: 700; margin: 0.5rem 0 0; }
+.campo input[aria-invalid='true'] { border-color: var(--erro); }
 
 .marcar { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; }
 .marcar input { width: 1.25rem; height: 1.25rem; margin-top: 0.15rem; accent-color: var(--roxo); flex: none; }
@@ -569,6 +572,8 @@ a:hover { color: var(--roxo-escuro); }
   .linha { grid-template-columns: 3.5rem 1fr; gap: 1rem; }
   .data__dia { font-size: var(--t2); }
   .escolha { grid-template-columns: 1fr; }
+  .campos-data { grid-template-columns: 1fr 1fr; }
+  .campos-data > :first-child { grid-column: 1 / -1; }
   .filtros__acoes { width: 100%; }
   .conteudo { padding-top: 1.25rem; }
 }

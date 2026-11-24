@@ -15,12 +15,49 @@ export const quando = (d) => maiuscula(`${diaSemana(d)}, ${hora(d)}`);
 
 export const jaPassou = (d) => new Date(d) <= new Date();
 
-// Converte entre ISO e o valor do <input type="datetime-local"> no horário do navegador.
-export function paraInputLocal(iso) {
-  const d = new Date(iso);
-  const p = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+// Campos de data e hora são de texto com máscara: o <input type="date"> nativo mostra o formato
+// do idioma do navegador (MM/DD/AAAA e AM/PM num Chrome em inglês), e a página não controla isso.
+const doisDigitos = (n) => String(n).padStart(2, '0');
+
+// "28112026" -> "28/11/2026"
+export function mascaraData(valor) {
+  const d = valor.replace(/\D/g, '').slice(0, 8);
+  return [d.slice(0, 2), d.slice(2, 4), d.slice(4)].filter(Boolean).join('/');
 }
-export const deInputLocal = (valor) => (valor ? new Date(valor).toISOString() : '');
+
+// "1430" -> "14:30"
+export function mascaraHora(valor) {
+  const d = valor.replace(/\D/g, '').slice(0, 4);
+  return d.length > 2 ? `${d.slice(0, 2)}:${d.slice(2)}` : d;
+}
+
+// "28/11/2026" -> "2026-11-28"; null se a data não existir (ex.: 31/02).
+export function dataParaIso(texto) {
+  const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(texto);
+  if (!m) return null;
+  const [, dia, mes, ano] = m.map(Number);
+  const d = new Date(ano, mes - 1, dia);
+  if (d.getFullYear() !== ano || d.getMonth() !== mes - 1 || d.getDate() !== dia) return null;
+  return `${ano}-${doisDigitos(mes)}-${doisDigitos(dia)}`;
+}
+
+// "2026-11-28" -> "28/11/2026"
+export const isoParaData = (iso) => (iso ? iso.split('-').reverse().join('/') : '');
+
+export const horaValida = (texto) => /^([01]\d|2[0-3]):[0-5]\d$/.test(texto);
+
+// Data e hora (no horário do navegador) <-> ISO com fuso, como a API espera.
+export function separarDataHora(iso) {
+  const d = new Date(iso);
+  return {
+    dia: `${doisDigitos(d.getDate())}/${doisDigitos(d.getMonth() + 1)}/${d.getFullYear()}`,
+    hora: `${doisDigitos(d.getHours())}:${doisDigitos(d.getMinutes())}`,
+  };
+}
+export function juntarDataHora(dia, hora) {
+  const iso = dataParaIso(dia);
+  if (!iso || !horaValida(hora)) return null;
+  return new Date(`${iso}T${hora}`).toISOString();
+}
 
 export const plural = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
