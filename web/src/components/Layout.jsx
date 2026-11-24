@@ -10,8 +10,14 @@ export default function Layout() {
       <header className="topo">
         <div className="topo__dentro">
           <Link to="/" className="marca" aria-label="Ajuda Aí, página inicial">
-            <svg className="marca__icone" viewBox="0 0 20 26" aria-hidden="true">
-              <path d="M1 25V10a9 9 0 0 1 18 0v15z" />
+            <svg className="marca__icone" viewBox="0 0 32 32" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#6E2A6B" />
+              <g fill="#F5B81B">
+                {[0, 72, 144, 216, 288].map((g) => (
+                  <ellipse key={g} cx="16" cy="9.6" rx="4.3" ry="5.6" transform={`rotate(${g} 16 16.4)`} />
+                ))}
+              </g>
+              <circle cx="16" cy="16.4" r="3.4" fill="#6E2A6B" />
             </svg>
             Ajuda Aí
           </Link>
