@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
 import { useTitulo } from '../hooks.js';
-import { Aviso, Campo, aoMudar } from '../components/ui.jsx';
+import { Aviso, Campo, NotaObrigatorios, Obrigatorio, aoMudar } from '../components/ui.jsx';
 import { destinoSeguro, inicioDo } from './Entrar.jsx';
 
 export function CamposPerfil({ tipo, dados, onChange }) {
@@ -113,6 +113,7 @@ export default function Cadastro() {
       </fieldset>
 
       <form onSubmit={enviar} className="formulario">
+        <NotaObrigatorios />
         <CamposPerfil tipo={tipo} dados={dados} onChange={mudar} />
         <Campo rotulo="E-mail" name="email" type="email" autoComplete="email" required value={dados.email} onChange={mudar} />
         <Campo
@@ -131,6 +132,7 @@ export default function Cadastro() {
           <input type="checkbox" name="aceite_lgpd" checked={dados.aceite_lgpd} onChange={mudar} required />
           <span>
             Li e aceito a <Link to="/privacidade" target="_blank">política de privacidade</Link>.
+            <Obrigatorio />
           </span>
         </label>
         <Aviso>{erro}</Aviso>

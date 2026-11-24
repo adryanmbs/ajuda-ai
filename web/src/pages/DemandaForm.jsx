@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { api } from '../api.js';
 import { useTitulo } from '../hooks.js';
 import { deInputLocal, paraInputLocal } from '../formato.js';
-import { Aviso, Campo, Carregando, aoMudar } from '../components/ui.jsx';
+import { Aviso, Campo, Carregando, NotaObrigatorios, aoMudar } from '../components/ui.jsx';
 
 const vazio = { titulo: '', descricao: '', data: '', local: '', num_vagas: 5 };
 
@@ -55,6 +55,7 @@ export default function DemandaForm() {
         </p>
       )}
       <form onSubmit={enviar} className="formulario">
+        <NotaObrigatorios />
         <Campo rotulo="Título" name="titulo" required maxLength={120} placeholder="Ex.: Mutirão de limpeza da praça" value={dados.titulo} onChange={mudar} />
         <Campo
           rotulo="O que os voluntários vão fazer"

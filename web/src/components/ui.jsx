@@ -6,10 +6,27 @@ export function Campo({ rotulo, dica, multilinha, id, ...props }) {
   const Tag = multilinha ? 'textarea' : 'input';
   return (
     <div className="campo">
-      <label htmlFor={idCampo}>{rotulo}</label>
+      <label htmlFor={idCampo}>
+        {rotulo}
+        {props.required && <Obrigatorio />}
+      </label>
       <Tag id={idCampo} aria-describedby={dica ? `${idCampo}-dica` : undefined} {...props} />
       {dica && <p className="campo__dica" id={`${idCampo}-dica`}>{dica}</p>}
     </div>
+  );
+}
+
+// O asterisco é só visual: o atributo required já avisa leitores de tela.
+export function Obrigatorio() {
+  return <span className="obrigatorio" aria-hidden="true"> *</span>;
+}
+
+export function NotaObrigatorios() {
+  return (
+    <p className="nota-obrigatorios">
+      Campos com <span className="obrigatorio" aria-hidden="true">*</span>
+      <span className="sr-only">asterisco</span> são obrigatórios.
+    </p>
   );
 }
 

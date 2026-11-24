@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { api } from '../api.js';
 import { useAuth } from '../auth.jsx';
 import { useTitulo } from '../hooks.js';
-import { Aviso, Campo, aoMudar } from '../components/ui.jsx';
+import { Aviso, Campo, NotaObrigatorios, aoMudar } from '../components/ui.jsx';
 import { CamposPerfil } from './Cadastro.jsx';
 
 export default function Conta() {
@@ -63,6 +63,7 @@ export default function Conta() {
         <p><Link to={`/instituicoes/${usuario.id}`}>Ver a página pública da instituição</Link></p>
       )}
       <form onSubmit={salvar} className="formulario">
+        <NotaObrigatorios />
         <CamposPerfil tipo={tipo} dados={dados} onChange={aoMudar(setDados)} />
         <Campo rotulo="E-mail" name="email" type="email" autoComplete="email" required value={dados.email} onChange={aoMudar(setDados)} />
         <Aviso tipo={aviso?.tipo}>{aviso?.texto}</Aviso>

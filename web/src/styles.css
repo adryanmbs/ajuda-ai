@@ -443,6 +443,8 @@ a:hover { color: var(--roxo-escuro); }
 .campo textarea:hover { border-color: var(--linha-forte); }
 .campo input:focus,
 .campo textarea:focus { outline: none; border-color: var(--roxo); box-shadow: 0 0 0 3px var(--roxo-claro); }
+.obrigatorio { color: var(--roxo); font-weight: 700; }
+.nota-obrigatorios { font-size: var(--t-1); color: var(--pedra); margin: 0; }
 .campo__dica { font-size: var(--t-1); color: var(--pedra); margin: 0; }
 .campos-lado { display: grid; grid-template-columns: 1fr 8rem; gap: 1rem; }
 
