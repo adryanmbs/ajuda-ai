@@ -139,7 +139,9 @@ destaque. O site é claro, direto e legível para qualquer pessoa.
 - **Ícone**: flor de ipê de cinco pétalas amarelas sobre quadrado roxo; lembra também
   pessoas em roda, como num mutirão. É o favicon e a marca do topo.
 - **Formulários**: campos obrigatórios marcados com `*` e a nota "Campos com * são
-  obrigatórios"; campos e botões com a mesma altura (46 px).
+  obrigatórios"; campos e botões com a mesma altura (46 px). Dia em DD/MM/AAAA e hora em
+  24h (HH:MM), em campos de texto com máscara: o seletor nativo segue o idioma do navegador
+  e mostraria MM/DD/AAAA e AM/PM.
 - **Layout**: alinhado à esquerda, coluna de até 72ch. Demandas são uma **agenda**, não uma
   grade de cards: cada linha tem um bloco de data à esquerda (dia grande + mês, fundo roxo
   claro) e o conteúdo à direita, separadas por uma linha fina.
@@ -149,7 +151,7 @@ destaque. O site é claro, direto e legível para qualquer pessoa.
 │ ✿ Ajuda Aí      Demandas Entrar [Criar conta]│
 ├──────────────────────────────────────────────┤
 │ Quem precisa de uma mão por aqui             │
-│ [Data ▾] [Local........] [Buscar]            │
+│ [DD/MM/AAAA] [Local........] [Buscar]        │
 ├──────┬───────────────────────────────────────┤
 │  14  │ Mutirão de pintura da creche          │
 │  nov │ Casa Lar Esperança · Bauxita, OP      │
