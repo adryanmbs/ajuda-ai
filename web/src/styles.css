@@ -20,7 +20,7 @@
   --fonte: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* escala 1.25 */
-  --t-1: 0.875rem;
+  --t-1: 0.9375rem;
   --t0: 1.0625rem;
   --t1: 1.25rem;
   --t2: 1.5625rem;
@@ -140,7 +140,6 @@ a:hover { color: var(--roxo-escuro); }
 .nav__links a.nav__destaque,
 .nav__links a.nav__destaque.active { background: var(--roxo); color: var(--branco); }
 .nav__links a.nav__destaque:hover { background: var(--roxo-escuro); color: var(--branco); }
-.nav__publicar { white-space: nowrap; }
 
 /* menu da conta */
 .conta { position: relative; }
@@ -214,7 +213,6 @@ a:hover { color: var(--roxo-escuro); }
 
 @media (max-width: 760px) {
   .nav__links--logado,
-  .nav .nav__publicar,
   .nav__so-largo,
   .conta__nome { display: none; }
   .conta__lista--celular { display: block; }
@@ -247,7 +245,7 @@ a:hover { color: var(--roxo-escuro); }
 /* ---------- abertura (página inicial) ---------- */
 .abertura {
   padding: 1rem 0 2rem;
-  border-bottom: 3px solid var(--tinta);
+  border-bottom: 1px solid var(--linha-forte);
   margin-bottom: 0.5rem;
 }
 .abertura__titulo {
@@ -358,8 +356,9 @@ a:hover { color: var(--roxo-escuro); }
   gap: 1.25rem;
   align-items: start;
   padding-bottom: 1.5rem;
-  border-bottom: 3px solid var(--tinta);
+  border-bottom: 1px solid var(--linha-forte);
 }
+.detalhe__topo .data { align-self: start; }
 .detalhe__topo .data__dia { font-size: var(--t4); }
 .detalhe__titulo { font-size: var(--t4); margin-bottom: 0.3rem; }
 .detalhe__inst { font-weight: 700; font-size: var(--t1); margin: 0; }
@@ -370,14 +369,14 @@ a:hover { color: var(--roxo-escuro); }
   gap: 2.5rem;
   margin-top: 1.5rem;
 }
-.detalhe__texto h2 { margin-top: 0.5rem; font-size: var(--t1); }
+.detalhe__texto { padding-top: calc(1.25rem + 1px); }
+.detalhe__texto h2 { margin-top: 0; font-size: var(--t1); }
 .texto-livre { white-space: pre-line; }
 
 .ficha {
   background: var(--branco);
   border: 1px solid var(--linha);
-  border-top: 4px solid var(--roxo);
-  border-radius: 0 0 var(--raio) var(--raio);
+  border-radius: var(--raio);
   padding: 1.25rem;
   align-self: start;
 }
@@ -400,8 +399,8 @@ a:hover { color: var(--roxo-escuro); }
   font: inherit;
   font-weight: 700;
   line-height: 1.2;
-  padding: 0.7rem 1.15rem;
-  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  min-height: 2.875rem;
   border: 2px solid var(--roxo);
   border-radius: var(--raio);
   background: var(--roxo);
@@ -411,8 +410,8 @@ a:hover { color: var(--roxo-escuro); }
 }
 .botao:hover { background: var(--roxo-escuro); border-color: var(--roxo-escuro); color: var(--branco); }
 .botao:disabled { opacity: 0.6; cursor: progress; }
-.botao--grande { font-size: var(--t1); padding: 0.85rem 1.5rem; }
-.botao--pequeno { font-size: var(--t-1); padding: 0.4rem 0.8rem; min-height: 2.25rem; }
+.botao--grande { font-size: var(--t1); padding: 0 1.5rem; min-height: 3.25rem; }
+.botao--pequeno { font-size: var(--t-1); padding: 0 0.8rem; min-height: 2.25rem; }
 .botao--contorno { background: transparent; color: var(--roxo); }
 .botao--contorno:hover { background: var(--roxo-claro); color: var(--roxo-escuro); }
 .botao--texto { background: transparent; border-color: transparent; color: var(--roxo); }
@@ -434,10 +433,11 @@ a:hover { color: var(--roxo-escuro); }
   background: var(--branco);
   border: 2px solid var(--linha);
   border-radius: var(--raio);
-  padding: 0.6rem 0.75rem;
-  min-height: 2.75rem;
+  padding: 0 0.75rem;
   width: 100%;
 }
+.campo input { height: 2.875rem; }
+.campo textarea { padding: 0.6rem 0.75rem; }
 .campo textarea { resize: vertical; line-height: 1.5; }
 .campo input:hover,
 .campo textarea:hover { border-color: var(--linha-forte); }
@@ -534,8 +534,8 @@ a:hover { color: var(--roxo-escuro); }
 .impacto {
   margin: 2rem 0;
   padding: 1.75rem 0;
-  border-top: 3px solid var(--tinta);
-  border-bottom: 3px solid var(--tinta);
+  border-top: 1px solid var(--linha-forte);
+  border-bottom: 1px solid var(--linha-forte);
 }
 .impacto__frase {
   font-weight: 700;
@@ -561,6 +561,7 @@ a:hover { color: var(--roxo-escuro); }
 /* ---------- telas pequenas ---------- */
 @media (max-width: 760px) {
   .detalhe__grade { grid-template-columns: 1fr; gap: 1.5rem; }
+  .detalhe__texto { padding-top: 0; }
   .detalhe__topo { grid-template-columns: 3.75rem 1fr; gap: 1rem; }
   .detalhe__topo .data__dia { font-size: var(--t3); }
   .detalhe__titulo { font-size: var(--t3); }

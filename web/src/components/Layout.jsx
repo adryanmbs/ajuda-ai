@@ -157,9 +157,6 @@ export default function Layout() {
                 </>
               )}
             </ul>
-            {usuario?.tipo === 'INSTITUICAO' && (
-              <Link to="/demandas/nova" className="botao botao--pequeno nav__publicar">Publicar demanda</Link>
-            )}
             {usuario && <MenuConta usuario={usuario} links={links} />}
           </nav>
         </div>
