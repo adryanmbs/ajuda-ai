@@ -56,11 +56,6 @@ export default function Conta() {
     }
   }
 
-  function terminarSessao() {
-    sair();
-    navegar('/', { replace: true });
-  }
-
   return (
     <section className="pagina pagina--estreita">
       <h1>Minha conta</h1>
@@ -73,11 +68,6 @@ export default function Conta() {
         <Aviso tipo={aviso?.tipo}>{aviso?.texto}</Aviso>
         <button className="botao" disabled={enviando}>{enviando ? 'Salvando…' : 'Salvar alterações'}</button>
       </form>
-
-      <div className="secao-conta">
-        <h2>Sair</h2>
-        <button className="botao botao--contorno" onClick={terminarSessao}>Sair da conta</button>
-      </div>
 
       <div className="secao-conta">
         <h2>Excluir conta</h2>

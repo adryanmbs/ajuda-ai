@@ -101,12 +101,12 @@ a:hover { color: var(--roxo-escuro); }
 .topo__dentro {
   max-width: var(--largura);
   margin: 0 auto;
-  padding: 0.85rem 1.25rem;
+  padding: 0.5rem 1.25rem;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem 1.5rem;
+  gap: 1rem;
+  min-height: 4.25rem;
 }
 .marca {
   display: inline-flex;
@@ -116,30 +116,110 @@ a:hover { color: var(--roxo-escuro); }
   text-decoration: none;
   font-weight: 800;
   font-size: var(--t1);
+  white-space: nowrap;
   letter-spacing: -0.01em;
 }
 .marca:hover { color: var(--roxo); }
 .marca__icone { width: 1.75rem; height: 1.75rem; flex: none; }
 
-.nav {
+.nav { display: flex; align-items: center; gap: 0.75rem; }
+.nav__links { display: flex; align-items: center; gap: 0.25rem; list-style: none; margin: 0; padding: 0; }
+.nav__links a {
   display: flex;
-  gap: 0.25rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.nav a {
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.9rem;
+  border-radius: var(--raio);
   color: var(--tinta);
   text-decoration: none;
-  padding: 0.4rem 0.7rem;
-  border-radius: var(--raio);
+  font-weight: 600;
   white-space: nowrap;
-  font-size: var(--t-1);
-  font-weight: 700;
 }
-.nav a:hover { background: var(--roxo-claro); color: var(--roxo); }
-.nav a.active { color: var(--roxo); }
-.nav a.nav__destaque { background: var(--roxo); color: var(--branco); }
-.nav a.nav__destaque:hover { background: var(--roxo-escuro); color: var(--branco); }
+.nav__links a:hover { background: var(--roxo-claro); color: var(--roxo); }
+.nav__links a.active { background: var(--roxo-claro); color: var(--roxo); font-weight: 700; }
+.nav__links a.nav__destaque,
+.nav__links a.nav__destaque.active { background: var(--roxo); color: var(--branco); }
+.nav__links a.nav__destaque:hover { background: var(--roxo-escuro); color: var(--branco); }
+.nav__publicar { white-space: nowrap; }
+
+/* menu da conta */
+.conta { position: relative; }
+.conta__botao {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 0.6rem 0 0.3rem;
+  border: 1px solid var(--linha);
+  border-radius: 999px;
+  background: var(--branco);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.conta__botao:hover,
+.conta__botao[aria-expanded='true'] { border-color: var(--linha-forte); background: var(--roxo-claro); }
+.conta__avatar {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  background: var(--amarelo);
+  color: var(--tinta);
+  font-size: var(--t-1);
+  font-weight: 800;
+}
+.conta__seta { width: 0.75rem; height: 0.75rem; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.conta__botao[aria-expanded='true'] .conta__seta { transform: rotate(180deg); }
+.conta__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 20;
+  width: min(17rem, calc(100vw - 2.5rem));
+  padding: 0.4rem;
+  background: var(--branco);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: 0 12px 32px rgb(34 27 42 / 0.14);
+}
+.conta__quem { display: flex; flex-direction: column; padding: 0.6rem 0.7rem 0.7rem; border-bottom: 1px solid var(--linha); }
+.conta__quem span { font-size: var(--t-1); color: var(--pedra); overflow-wrap: anywhere; }
+.conta__lista { list-style: none; margin: 0; padding: 0.3rem 0; }
+.conta__lista + .conta__lista { border-top: 1px solid var(--linha); }
+.conta__lista a,
+.conta__sair {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: calc(var(--raio) - 4px);
+  background: none;
+  color: var(--tinta);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+.conta__lista a:hover,
+.conta__sair:hover { background: var(--roxo-claro); color: var(--roxo); }
+.conta__lista a.active { color: var(--roxo); font-weight: 700; }
+.conta__sair { color: var(--erro); }
+.conta__sair:hover { background: var(--erro-claro); color: var(--erro); }
+.conta__lista--celular { display: none; }
+
+@media (max-width: 760px) {
+  .nav__links--logado,
+  .nav .nav__publicar,
+  .nav__so-largo,
+  .conta__nome { display: none; }
+  .conta__lista--celular { display: block; }
+  .nav__links a { padding: 0 0.7rem; }
+}
 
 /* ---------- estrutura ---------- */
 .conteudo {
