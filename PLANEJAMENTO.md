@@ -116,46 +116,50 @@ Erros sempre no formato `{ "erro": "mensagem" }` com 400/401/403/404/409.
 | `/demandas/:id/inscritos` | Lista de inscritos, remover | instituição dona | GET /demandas/:id/inscricoes, DELETE /inscricoes/:id |
 | `/instituicoes/:id` | Perfil público + painel de impacto | todos | GET /instituicoes/:id/impacto |
 
-Navegação: topo com logo; à direita "Entrar"/"Criar conta" (visitante), "Minhas inscrições"
-(voluntário) ou "Painel" + "Publicar demanda" (instituição), e "Minha conta". No celular, os
-links quebram em uma segunda linha rolável — sem menu hambúrguer.
+Navegação: topo branco com logo à esquerda. Visitante vê "Demandas", "Entrar" e "Criar conta".
+Logado vê "Demandas", "Minhas inscrições" (voluntário) ou "Painel" (instituição) e um botão
+com as iniciais que abre o menu da conta: nome, e-mail, "Minha conta", "Página pública"
+(instituição) e "Sair". No celular, os links vão para dentro desse menu.
 
 ## 6. Direção visual
 
-Ponto de partida: Ouro Preto. Casarões de parede caiada com janelas e portas pintadas de azul,
-ocre e verde. O site é um mural da cidade: claro, direto, legível para qualquer pessoa.
+Ponto de partida: os ipês de Ouro Preto. O ipê-roxo dá a cor principal e o ipê-amarelo, o
+destaque. O site é claro, direto e legível para qualquer pessoa.
 
 - **Cores**
-  - Cal `#F6F7F4` — fundo (branco frio de parede caiada, não creme)
-  - Tinta `#17212B` — texto
-  - Azul colonial `#1D4F91` — ação principal, links
-  - Ocre `#D99A1E` — vagas ocupadas, destaque de data
-  - Verde janela `#2E7356` — confirmação (inscrito, concluída)
-  - Pedra-sabão `#6B716C` — texto secundário, bordas `#D9DCD6`
+  - Fundo `#F7F6F9` (branco levemente lilás) e superfícies `#FFFFFF`
+  - Tinta `#221B2A` — texto
+  - Ipê-roxo `#6E2A6B` — ação principal, links, vagas ocupadas, bloco de data
+  - Ipê-amarelo `#F5B81B` — avatar da conta e números de impacto
+  - Verde `#2C7A55` — confirmação (inscrito, concluída)
+  - Pedra `#5F5866` — texto secundário; bordas `#E3DEE6`
   - Erro `#B3261E`
-- **Tipos**: *Archivo* (largura expandida, 800) nos títulos — cara de cartaz pintado;
-  *Atkinson Hyperlegible* no corpo — feita para baixa visão, combina com o público amplo.
-  Escala 1.25: 14 / 16 / 20 / 25 / 31 / 39 px; corpo 17 px, entrelinha 1.55.
+- **Tipo**: uma família só, *Figtree* (400 a 800). Escala 1.25 com corpo de 17 px,
+  entrelinha 1.55; textos pequenos com 15 px.
+- **Ícone**: flor de ipê de cinco pétalas amarelas sobre quadrado roxo; lembra também
+  pessoas em roda, como num mutirão. É o favicon e a marca do topo.
+- **Formulários**: campos obrigatórios marcados com `*` e a nota "Campos com * são
+  obrigatórios"; campos e botões com a mesma altura (46 px).
 - **Layout**: alinhado à esquerda, coluna de até 72ch. Demandas são uma **agenda**, não uma
-  grade de cards: cada linha tem um bloco de data à esquerda (dia grande + mês) e o conteúdo
-  à direita, separadas por uma linha fina.
+  grade de cards: cada linha tem um bloco de data à esquerda (dia grande + mês, fundo roxo
+  claro) e o conteúdo à direita, separadas por uma linha fina.
 
 ```
 ┌──────────────────────────────────────────────┐
-│ Ajuda Aí                 Entrar  Criar conta │
+│ ✿ Ajuda Aí      Demandas Entrar [Criar conta]│
 ├──────────────────────────────────────────────┤
 │ Quem precisa de uma mão por aqui             │
 │ [Data ▾] [Local........] [Buscar]            │
 ├──────┬───────────────────────────────────────┤
 │  14  │ Mutirão de pintura da creche          │
 │  nov │ Casa Lar Esperança · Bauxita, OP      │
-│      │ ▣▣▣□□□□  4 de 7 vagas livres          │
+│      │ ●●●○○○○  4 de 7 vagas livres          │
 ├──────┼───────────────────────────────────────┤
 ```
 
-- **O elemento memorável**: o medidor de vagas como **fileira de janelas** — um quadradinho
-  por vaga, ocre quando ocupada, contorno quando livre (até 12; acima disso, barra).
-  Todo o resto é contido.
+- **O elemento memorável**: o medidor de vagas como **fileira de bolinhas** — uma por vaga,
+  roxa quando ocupada, só o contorno quando livre (até 12; acima disso, barra). Todo o resto
+  é contido.
 - **Princípios**: sem rótulos em caixa alta, sem gradientes, sem sombras decorativas; botões
   dizem a ação ("Inscrever-me", "Publicar demanda"); erros dizem o que fazer; listas vazias
   convidam a agir. Foco visível, responsivo até 360 px, `prefers-reduced-motion` respeitado.
